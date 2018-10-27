@@ -1,0 +1,35 @@
+Here you can cut & paste my code into a Jupyter Notebook and test if it's successful or if it could use a little help.
+
+PS3 #1
+import csv
+largest = None
+date = None
+with open('CO-OPS__8729108__wl.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+        if line_count == 0:
+            print(row)
+            line_count += 1
+        else:
+            print({row[0]}, {row[1]})
+            line_count += 1
+
+            if largest is None or row[1] > largest:
+                largest = row[1]
+                date = row[0]
+print('Largest:', largest, "date:", date)
+
+PS3 #2
+import pandas as pd
+import dateutil
+data = pd.read_csv('CO-OPS__8729108__wl.csv')
+data['Date Time'] = data['Date Time'].apply(dateutil.parser.parse, dayfirst=True)
+data[' Water Level'].max()
+
+PS3 #3
+import pandas as pd
+df = pd.read_csv('CO-OPS__8729108__wl.csv')
+df.head()
+df['Diff'] = df[' Water Level'] - df[' Water Level'].shift(1)
+df['Diff'].max()
