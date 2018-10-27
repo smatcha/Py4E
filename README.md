@@ -1,2 +1,2 @@
-# demo
-demo repo for class
+# Py4E
+Repo for files, problem sets, projects, etc.
