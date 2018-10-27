@@ -1,0 +1,24 @@
+import urllib.request, urllib.parse, urllib.error
+import json
+
+serviceurl = 'https://tidesandcurrents.noaa.gov/waterlevels.html'
+
+while True:
+    id = input('Enter station ID')
+    if len(id) < 1: break
+    date = input('Enter date:')
+    if len(date) < 1: break
+    product = input('Enter a product:')
+    if len(product) < 1: break 
+
+    url = serviceurl + "?" + urllib.parse.urlencode({'date': date, 'product': product, 'id': id}) 
+
+    print('Retrieving', url)
+    uh = urllib.request.urlopen(url)
+    data = uh.read().decode()
+    print('Retrieved', len(data), 'characters')
+    
+    To Retrieve Data from Panama City, FL
+    Enter station ID: 8729108
+    Enter date: today
+    Enter a product: water_level
